@@ -37,7 +37,7 @@ function App() {
       setPosts(posts => posts.filter(post => post.postId !== postId));
     });
   }, []);
-
+  console.log(posts)
   return (
     <div className="container">
       <aside className="action-menu">
