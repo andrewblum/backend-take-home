@@ -4,31 +4,39 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+db = {
+    'posts': 
+      [{ 
+        'postId': 0,
+        'author': 'Andrew',
+        'body': 'Hi',
+        'comments': 'Comment'
+      }, 
+      { 'postId': 1,
+        'author': 'Andrew',
+        'body': 'Hi2',
+        'comments': 'Comment2'
+      }], 
+    'comments': 
+      [{
+        'commentId': 0,
+        'uid': 0,
+        'author': 'Andrew',
+        'body': 'Stuff'
+      }]
+    }
+
 @app.route('/api/posts', methods=['GET', 'POST'])
 def posts():
-    post = [{ 'postId': 0,
-      'author': 'Andrew',
-      'body': 'Hi',
-      'comments': 'Comment'
-    }, 
-    { 'postId': 1,
-      'author': 'Andrew',
-      'body': 'Hi2',
-      'comments': 'Comment2'
-    }]
-    return jsonify(post)
+    return jsonify(db.posts)
 
 @app.route('/api/post/<id>', methods=['GET', 'POST', 'DELETE'])
 def post(id):
-    print(request)
     return 'hi'
 
 @app.route('/api/comment/<id>')
 def comment(id):
-  comment = {'uid': 0,
-  'author': 'Andrew',
-  'body': 'Stuff'}
-  return jsonify(comment)
+  return jsonify(db.comments)
 
 @app.route('/')
 def index():
